@@ -310,7 +310,7 @@
     <p class="standfirst">读得懂、画得清、能上手。讲义、图解、动手任务，全部挂在星镜这个真实项目上做，不额外开练手项目。</p>
     <div class="meta">
       <span>八周高密度 · 每周 15 到 20 小时</span>
-      <span>12 张图解 · 53 条术语</span>
+      <span>14 张图解 · 53 条术语</span>
       <span>视频全部选看</span>
     </div>
   </header>
@@ -426,9 +426,75 @@
       <p>那些旋钮的正式名字叫参数，也叫权重。模型名字里的 7B、32B，B 是十亿，说的就是旋钮个数。参数多只代表容量大，不直接等于聪明。近两年小参数模型打赢大参数模型是常事，因为训练数据的质量和方法的权重比参数量更高。</p>
 
       <h4>为什么要分很多层</h4>
-      <p>第一层只看得见「这儿有条边」「那儿有个弯」。第二层把边和弯拼成「耳朵」「胡须」。第三层把耳朵胡须拼成一张猫脸。层数越多，能拼的东西越复杂，怎么拼也没人教，它自己摸出来的。</p>
-      <p>每两层之间还要过一个压缩函数，术语叫非线性激活。没有这一步，叠一百层在数学上等于一层，白叠。</p>
-      <p>至于「神经」两个字，是因为当年的灵感来自脑细胞。别当真，里面就是一堆乘法和加法。</p>
+      <p>先说层是什么。那几十亿个旋钮不是乱堆成一坨的，是分成一组一组、排成一排。数字从第一组进去，算完交给第二组，第二组算完交给第三组，一路传到最后。<b>每一组就是一层。</b></p>
+      <p>然后是最关键的一条：<b>每一层只看得见上一层交给它的东西，看不见原始输入。</b>整个分工是从这一条自然长出来的。</p>
+
+      <div class="fig-wrap">
+        <figure>
+          <svg viewBox="0 0 740 180" role="img" aria-label="层级示意图：第一层从像素里认出边和弯，第二层把边拼成耳朵胡须，第三层拼成猫脸，每一层只看得见上一层的输出">
+            <defs><marker id="mI" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" class="d-ah"/></marker></defs>
+            <rect x="20"  y="46" width="160" height="80" rx="3" class="d-soft"/>
+            <rect x="200" y="46" width="160" height="80" rx="3" class="d-box"/>
+            <rect x="380" y="46" width="160" height="80" rx="3" class="d-box"/>
+            <rect x="560" y="46" width="160" height="80" rx="3" class="d-acc"/>
+            <text x="100" y="72"  text-anchor="middle" class="d-tb">输入</text>
+            <text x="280" y="72"  text-anchor="middle" class="d-tb">第一层</text>
+            <text x="460" y="72"  text-anchor="middle" class="d-tb">第二层</text>
+            <text x="640" y="72"  text-anchor="middle" class="d-ta">第三层</text>
+            <text x="100" y="98"  text-anchor="middle" class="d-tm">一张图的像素</text>
+            <text x="280" y="98"  text-anchor="middle" class="d-tc">收到：像素</text>
+            <text x="460" y="98"  text-anchor="middle" class="d-tc">收到：边和弯</text>
+            <text x="640" y="98"  text-anchor="middle" class="d-tc">收到：耳朵、胡须</text>
+            <text x="100" y="116" text-anchor="middle" class="d-tm">一堆亮度数字</text>
+            <text x="280" y="116" text-anchor="middle" class="d-t">认出边、弯</text>
+            <text x="460" y="116" text-anchor="middle" class="d-t">拼出耳朵、胡须</text>
+            <text x="640" y="116" text-anchor="middle" class="d-ta">拼出一张猫脸</text>
+            <line x1="182" y1="86" x2="198" y2="86" class="d-line" marker-end="url(#mI)"/>
+            <line x1="362" y1="86" x2="378" y2="86" class="d-line" marker-end="url(#mI)"/>
+            <line x1="542" y1="86" x2="558" y2="86" class="d-line" marker-end="url(#mI)"/>
+            <text x="20" y="158" class="d-tm">第二层根本没见过像素。它眼里的世界就是一张「哪里有边、哪里有弯」的地图，所以它能做的只有把这些拼起来。</text>
+          </svg>
+          <figcaption>层越深，手里的零件越大块，能拼的东西越复杂。这个分工没有任何人设计过，是训练过程中自己长出来的。</figcaption>
+        </figure>
+      </div>
+
+      <h4>为什么每两层之间要掰一道弯</h4>
+      <p>这一条最容易被一句话带过，但它是层数有没有用的关键。</p>
+      <p>假设每一层干的事就是「把数字乘个系数再加起来」。那两层连起来会怎样？<b>乘 3 再乘 5，等于直接乘 15。</b>三层就是乘一个更大的数。不管你叠多少层，最后总能等价成一层，只是系数不同，表达能力一点没涨。</p>
+
+      <div class="fig-wrap">
+        <figure>
+          <svg viewBox="0 0 640 186" role="img" aria-label="非线性的作用：纯乘法的多层可以压缩成一层，中间加一道非线性之后就压不回去了">
+            <defs><marker id="mJ" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse"><path d="M 0 0 L 10 5 L 0 10 z" class="d-ah"/></marker></defs>
+            <text x="20" y="28" class="d-tw">如果每层只是乘个数</text>
+            <rect x="20"  y="40" width="64" height="38" rx="3" class="d-box"/>
+            <rect x="106" y="40" width="64" height="38" rx="3" class="d-box"/>
+            <text x="52"  y="64" text-anchor="middle" class="d-t">乘 3</text>
+            <text x="138" y="64" text-anchor="middle" class="d-t">乘 5</text>
+            <line x1="86" y1="59" x2="102" y2="59" class="d-line" marker-end="url(#mJ)"/>
+            <text x="184" y="64" class="d-t">其实等于</text>
+            <rect x="254" y="40" width="70" height="38" rx="3" class="d-warnb"/>
+            <text x="289" y="64" text-anchor="middle" class="d-tw">乘 15</text>
+            <text x="340" y="64" class="d-tw">一层就顶替了，白叠</text>
+
+            <line x1="20" y1="100" x2="620" y2="100" class="d-dash"/>
+
+            <text x="20" y="128" class="d-ta">每层之间掰一道弯</text>
+            <rect x="20"  y="140" width="64" height="38" rx="3" class="d-box"/>
+            <rect x="106" y="140" width="72" height="38" rx="3" class="d-acc"/>
+            <rect x="200" y="140" width="64" height="38" rx="3" class="d-box"/>
+            <text x="52"  y="164" text-anchor="middle" class="d-t">乘 3</text>
+            <text x="142" y="164" text-anchor="middle" class="d-ta">掰一下</text>
+            <text x="232" y="164" text-anchor="middle" class="d-t">乘 5</text>
+            <line x1="86"  y1="159" x2="102" y2="159" class="d-line" marker-end="url(#mJ)"/>
+            <line x1="180" y1="159" x2="196" y2="159" class="d-line" marker-end="url(#mJ)"/>
+            <text x="280" y="164" class="d-ta">压不回一层，能力才是真的在叠</text>
+          </svg>
+          <figcaption>那道弯最简单的一种是「负数全压成 0，正数原样放行」。就这么一下，乘 3、压一下、再乘 5，跟直接乘 15 就完全不是一回事了，没法再合并。术语叫激活函数，名字吓人，干的事就是给直线掰个弯。</figcaption>
+        </figure>
+      </div>
+
+      <p>至于「神经」两个字，是当年的灵感来自脑细胞。别当真，里面就是一堆乘法、加法，和刚才那道弯。</p>
 
       <h4>Transformer：让每个字自己决定回头看谁</h4>
       <p>大模型是神经网络的一种特定结构，叫 Transformer。它干的新鲜事只有一件：让每个字自己决定该回头看哪些字。</p>
