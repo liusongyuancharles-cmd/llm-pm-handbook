@@ -207,6 +207,9 @@
   .d-tc { fill: var(--muted); font-family: var(--mono); font-size: 10px; letter-spacing: .05em; }
   .d-ta { fill: var(--accent); font-family: var(--body); font-size: 12.5px; font-weight: 600; }
   .d-tw { fill: var(--signal); font-family: var(--body); font-size: 12px; font-weight: 600; }
+  .d-track { fill: var(--surface-2); stroke: var(--line); stroke-width: .8; }
+  .d-bar   { fill: var(--line); }
+  .d-barw  { fill: var(--accent); }
   .d-ah { fill: currentColor; }
   .d-aha{ fill: var(--accent); }
 
@@ -432,31 +435,49 @@
       <p>为什么需要这个，看两句话就明白：</p>
 <div class="fig-wrap">
         <figure>
-          <svg viewBox="0 0 560 244" role="img" aria-label="注意力示意图：同一句话只改一个字，「它」的注意力就从「包」转到「杯子」">
-            <text x="20" y="18" class="d-tc">我没把杯子放进包里，因为它太小了</text>
-            <path d="M 318 74 Q 259 30 200 74" class="d-lacc"/>
-            <path d="M 318 76 Q 199 22 80 76" class="d-dash"/>
-            <text x="259" y="44" text-anchor="middle" class="d-ta">注意力高</text>
-            <text x="146" y="38" text-anchor="middle" class="d-tm">低</text>
-            <text x="80"  y="94" text-anchor="middle" class="d-t">杯子</text>
-            <text x="200" y="94" text-anchor="middle" class="d-ta">包</text>
-            <text x="318" y="94" text-anchor="middle" class="d-ta">它</text>
-            <text x="440" y="94" text-anchor="middle" class="d-t">太小了</text>
-            <text x="20" y="122" class="d-tb">「它」指的是包</text>
+          <svg viewBox="0 0 560 352" role="img" aria-label="注意力打分示意图：模型处理到「它」时回头给前面每个词打分，第一句里「包」得分最高，只改一个字后第二句里「杯子」得分最高">
+            <text x="20" y="20" class="d-t">我没把杯子放进包里，因为<tspan class="d-ta">它</tspan>太<tspan class="d-ta">小</tspan>了</text>
+            <text x="20" y="42" class="d-tc">处理到「它」的时候，回头给前面每个词打一个「你跟我多大关系」的分</text>
+            <text x="104" y="64" text-anchor="end" class="d-t">我</text>
+            <rect x="116" y="53" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="53" width="23" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="64" class="d-tm">低</text>
+            <text x="104" y="88" text-anchor="end" class="d-t">杯子</text>
+            <rect x="116" y="77" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="77" width="70" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="88" class="d-tm">低</text>
+            <text x="104" y="112" text-anchor="end" class="d-t">放进</text>
+            <rect x="116" y="101" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="101" width="32" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="112" class="d-tm">低</text>
+            <text x="104" y="136" text-anchor="end" class="d-tb">包</text>
+            <rect x="116" y="125" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="125" width="232" height="14" rx="2" class="d-barw"/>
+            <text x="416" y="136" class="d-ta">高</text>
+            <text x="20" y="170" class="d-ta">分最高的是「包」，所以这句里「它」指的是包</text>
 
-            <line x1="20" y1="138" x2="540" y2="138" class="d-dash"/>
+            <line x1="20" y1="196" x2="540" y2="196" class="d-dash"/>
 
-            <text x="20" y="164" class="d-tc">我没把杯子放进包里，因为它太大了</text>
-            <path d="M 318 220 Q 199 166 80 220" class="d-lacc"/>
-            <path d="M 318 222 Q 259 182 200 222" class="d-dash"/>
-            <text x="199" y="186" text-anchor="middle" class="d-ta">注意力高</text>
-            <text x="266" y="192" text-anchor="middle" class="d-tm">低</text>
-            <text x="80"  y="240" text-anchor="middle" class="d-ta">杯子</text>
-            <text x="200" y="240" text-anchor="middle" class="d-t">包</text>
-            <text x="318" y="240" text-anchor="middle" class="d-ta">它</text>
-            <text x="440" y="240" text-anchor="middle" class="d-t">太大了</text>
+            <text x="20" y="224" class="d-t">我没把杯子放进包里，因为<tspan class="d-ta">它</tspan>太<tspan class="d-ta">大</tspan>了</text>
+            <text x="104" y="246" text-anchor="end" class="d-t">我</text>
+            <rect x="116" y="235" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="235" width="20" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="246" class="d-tm">低</text>
+            <text x="104" y="270" text-anchor="end" class="d-tb">杯子</text>
+            <rect x="116" y="259" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="259" width="238" height="14" rx="2" class="d-barw"/>
+            <text x="416" y="270" class="d-ta">高</text>
+            <text x="104" y="294" text-anchor="end" class="d-t">放进</text>
+            <rect x="116" y="283" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="283" width="29" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="294" class="d-tm">低</text>
+            <text x="104" y="318" text-anchor="end" class="d-t">包</text>
+            <rect x="116" y="307" width="290" height="14" rx="2" class="d-track"/>
+            <rect x="116" y="307" width="61" height="14" rx="2" class="d-bar"/>
+            <text x="416" y="318" class="d-tm">低</text>
+            <text x="20" y="348" class="d-ta">只改了一个字，最高分就换成了「杯子」</text>
           </svg>
-          <figcaption>同一句话只改了一个字，「它」指的东西就完全变了。模型处理到「它」的时候，回头给前面每个字打分，分高的那个才被算作它指代的对象。打分的本事是训练出来的，没人写规则。</figcaption>
+          <figcaption>模型处理到「它」的时候，会回头给前面<b>每一个</b>词打分，不是只看两个候选。分最高的那个才被算作它指代的对象。上下两句只差一个字，分数分布就整个翻过来了，而打分的本事是训练出来的，没人写规则。</figcaption>
         </figure>
       </div>
       <p>一句话只改了一个字，「它」指的东西就完全变了。模型要搞明白，必须把整句话摊开来看，而不是闷头往下读。</p>
