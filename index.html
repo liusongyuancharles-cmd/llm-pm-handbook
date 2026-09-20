@@ -310,7 +310,7 @@
     <p class="standfirst">读得懂、画得清、能上手。讲义、图解、动手任务，全部挂在星镜这个真实项目上做，不额外开练手项目。</p>
     <div class="meta">
       <span>八周高密度 · 每周 15 到 20 小时</span>
-      <span>14 张图解 · 53 条术语</span>
+      <span>15 张图解 · 53 条术语</span>
       <span>视频全部选看</span>
     </div>
   </header>
@@ -462,6 +462,48 @@
       <p>这一条最容易被一句话带过，但它是层数有没有用的关键。</p>
       <p>假设每一层干的事就是「把数字乘个系数再加起来」。那两层连起来会怎样？<b>乘 3 再乘 5，等于直接乘 15。</b>三层就是乘一个更大的数。不管你叠多少层，最后总能等价成一层，只是系数不同，表达能力一点没涨。</p>
 
+      <h4>那「一道弯」到底是什么</h4>
+      <p>这个说法是字面意思，不是打比方。把一层干的事画成一张图就看出来了：横轴是进去的数，纵轴是出来的数。</p>
+      <p><b>「乘 3」画出来就是一条直线。</b>输入 1 出来 3，输入 2 出来 6，输入翻倍输出就翻倍，整条线笔直。两条直线接起来还是直线，所以它们能被压成一层。<b>你没办法用直线拼出任何不直的东西。</b></p>
+      <p>那道弯用的规则简单到可笑：<b>负数一律输出 0，正数原样放行。</b>画出来，横轴左半边整个贴在 0 上，过了原点开始往上斜。这条线在原点那儿有个折角，它不再是直线了。这就是「掰弯」的字面含义。</p>
+
+      <div class="fig-wrap">
+        <figure>
+          <svg viewBox="0 0 700 232" role="img" aria-label="三张输入输出关系图：乘一个数是直线，加上非线性后出现折角，很多折角拼起来可以逼近任何形状">
+            <text x="105" y="26" text-anchor="middle" class="d-tb">乘个数</text>
+            <text x="340" y="26" text-anchor="middle" class="d-ta">掰一道弯</text>
+            <text x="575" y="26" text-anchor="middle" class="d-ta">很多道弯拼起来</text>
+
+            <line x1="20"  y1="112" x2="190" y2="112" class="d-line"/>
+            <line x1="105" y1="42"  x2="105" y2="182" class="d-line"/>
+            <line x1="255" y1="112" x2="425" y2="112" class="d-line"/>
+            <line x1="340" y1="42"  x2="340" y2="182" class="d-line"/>
+            <line x1="490" y1="112" x2="660" y2="112" class="d-line"/>
+            <line x1="575" y1="42"  x2="575" y2="182" class="d-line"/>
+            <text x="99" y="126" text-anchor="end" class="d-tc">0</text>
+            <text x="334" y="126" text-anchor="end" class="d-tc">0</text>
+            <text x="569" y="126" text-anchor="end" class="d-tc">0</text>
+
+            <line x1="35" y1="166" x2="175" y2="58" class="d-lacc"/>
+
+            <polyline points="270,112 340,112 410,58" class="d-lacc"/>
+            <circle cx="340" cy="112" r="4" fill="var(--signal)"/>
+            <text x="348" y="134" class="d-tw">折角在这儿</text>
+
+            <path d="M 500 164 C 528 164 540 84 575 80 C 606 77 614 128 650 62" class="d-dash"/>
+            <polyline points="500,164 518,163 534,151 550,110 566,86 582,79 598,96 614,116 630,92 650,62" class="d-lacc"/>
+
+            <text x="105" y="204" text-anchor="middle" class="d-tm">笔直。输入翻倍，输出翻倍</text>
+            <text x="340" y="204" text-anchor="middle" class="d-tm">负数压成 0，正数原样放行</text>
+            <text x="575" y="204" text-anchor="middle" class="d-tm">折线够多，什么形状都能凑</text>
+            <text x="20" y="228" class="d-tc">横轴是进去的数，纵轴是出来的数</text>
+          </svg>
+          <figcaption>左边这条直线，不管接几条还是直线。中间那个折角一加，就再也压不回直线了。右边是关键：<b>一段段折线能逼近任何形状，直线不管多少条都只能是直线。</b>神经网络能学会复杂的东西，靠的就是几十亿个这样的小折角凑出一个极复杂的形状。</figcaption>
+        </figure>
+      </div>
+
+      <p>所以分工是这样：<b>乘法负责缩放，那道弯负责让形状不再是直的。</b>少了弯，你堆再多层也只能画出直线。</p>
+
       <div class="fig-wrap">
         <figure>
           <svg viewBox="0 0 640 186" role="img" aria-label="非线性的作用：纯乘法的多层可以压缩成一层，中间加一道非线性之后就压不回去了">
@@ -490,7 +532,7 @@
             <line x1="180" y1="159" x2="196" y2="159" class="d-line" marker-end="url(#mJ)"/>
             <text x="280" y="164" class="d-ta">压不回一层，能力才是真的在叠</text>
           </svg>
-          <figcaption>那道弯最简单的一种是「负数全压成 0，正数原样放行」。就这么一下，乘 3、压一下、再乘 5，跟直接乘 15 就完全不是一回事了，没法再合并。术语叫激活函数，名字吓人，干的事就是给直线掰个弯。</figcaption>
+          <figcaption>回到能不能压缩这件事。乘 3、压一下、再乘 5，因为中间那个折角的存在，跟直接乘 15 完全不是一回事，没法再合并成一层。这道弯的术语叫激活函数，名字吓人，干的事就是给直线掰个角。</figcaption>
         </figure>
       </div>
 
