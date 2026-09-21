@@ -310,7 +310,7 @@
     <p class="standfirst">读得懂、画得清、能上手。讲义、图解、动手任务，全部挂在星镜这个真实项目上做，不额外开练手项目。</p>
     <div class="meta">
       <span>八周高密度 · 每周 15 到 20 小时</span>
-      <span>17 张图解 · 53 条术语</span>
+      <span>17 张图解 · 54 条术语</span>
       <span>视频全部选看</span>
     </div>
   </header>
@@ -672,7 +672,7 @@
       <div class="key"><b>这条对产品设计的意义：</b>幻觉不是可以修掉的 bug，是这套机制的固有产物。你的产品设计必须假设它一定会错，问题只是错的时候用户看到什么、代价由谁承担。这跟做支付系统时假设「网络一定会断」是同一个思路。</div>
 
       <h4>模型没有记忆，记忆是你自己塞进去的</h4>
-      <p>每一次调用对模型来说都是全新的。它不记得上一轮说过什么。所谓的多轮对话，全靠你把历史消息重新塞进这一次的请求里。所谓的「AI 记住了我的偏好」，也全是你的系统在检索并拼装上下文。</p>
+      <p>每一次调用，也就是每一次通过接口向模型发一次请求，对它来说都是全新的。接口的英文缩写是 API，全称 Application Programming Interface，就是程序之间对话的通道。它不记得上一轮说过什么。所谓的多轮对话，全靠你把历史消息重新塞进这一次的请求里。所谓的「AI 记住了我的偏好」，也全是你的系统在检索并拼装上下文。</p>
       <p>这个认知对做产品极重要，因为它意味着：<b>记忆是产品功能，不是模型能力。</b>做得好不好，取决于你的系统决定塞什么进去，而不是取决于模型多强。</p>
 
       <h4>注意力在长上下文里会被摊薄</h4>
@@ -1305,7 +1305,7 @@
 
       <h4>微调真正能改的四件事</h4>
       <ul>
-        <li><b>输出格式的稳定性。</b>提示词里写十遍「只输出 JSON」它还是偶尔加一句废话，微调能把这个概率压到很低。</li>
+        <li><b>输出格式的稳定性。</b>提示词里写十遍「只输出 JSON」它还是偶尔加一句废话，微调能把这个概率压到很低。JSON 全称 JavaScript Object Notation，一种机器好解析的结构化数据格式。</li>
         <li><b>语气和风格。</b>星镜要的那种特定的表达方式，用提示词能靠近，用微调能锁定。这是星镜最可能真需要微调的地方。</li>
         <li><b>特定任务的准确率。</b>某个分类或抽取任务，用几千条标注数据微调，小模型能打过通用大模型。</li>
         <li><b>降本。</b>把大模型的能力蒸馏到小模型，同样效果成本降一个量级。<b>这是微调在商业上最常见的真实理由</b>，很多号称「为了效果」的微调，真实动机其实是这条。</li>
@@ -1704,6 +1704,7 @@
       <p>还有一个常被忽略的招：流式返回。同样等五秒，一个字一个字往外冒和最后一次性蹦出来，主观体感差很远。这是纯前端能拿到的收益。</p>
 
       <h4>一份合格的 AI 功能 PRD 要有什么</h4>
+      <p>PRD 全称 Product Requirements Document，产品需求文档。</p>
       <p>这是你这八周最值钱的产出。普通 PRD 的那些部分照旧，额外必须有这四块：</p>
       <ol>
         <li><b>判定标准。</b>这个功能什么样算好，写成可复现的二元标准，附评测集条目数。</li>
@@ -1764,6 +1765,8 @@
           </tbody>
         </table>
       </div>
+
+      <p><b>表里那几个缩写的全称。</b>MMLU 是 Massive Multitask Language Understanding，大规模多任务语言理解。GPQA 是 Graduate-Level Google-Proof Q&amp;A，研究生级、搜不到答案的问答。AIME 是 American Invitational Mathematics Examination，美国数学邀请赛。SWE-bench 是 Software Engineering Benchmark，软件工程基准。<b>Elo 不是缩写</b>，是发明这套算分法的匈牙利人 Arpad Elo 的姓，本来给国际象棋选手排名用的。</p>
 
       <h4>编程这块，现在的实际状况</h4>
       <p>到 2026 年 9 月，最常被引用的那个编程榜已经<b>饱和</b>了：头部模型全挤在九十几分，彼此只差一两分，而且不同来源报的数还对不上。</p>
@@ -1966,9 +1969,10 @@
   <section class="tail" id="terms">
     <div class="sec-head">
       <h2>术语表</h2>
-      <span class="sec-note">53 条 · 标了第几周出现</span>
+      <span class="sec-note">54 条 · 标了第几周出现</span>
     </div>
     <p class="goal" style="margin-bottom:8px">教材里出现的名词全在这儿，按主题分七组。写法尽量是人话，不是教科书定义。</p>
+    <p class="lede" style="margin-bottom:14px"><b>缩写都标了完整英文。</b>看不懂的缩写，先把英文全称拆开读一遍，很多词拆开就自明了。比如 SFT 是 Supervised Fine-Tuning，监督、微、调，三个词各对一个意思。</p>
 
     <h3 class="block">一 · 模型本身是什么</h3>
     <dl class="gloss">
@@ -1996,10 +2000,12 @@
         <dd>在海量文本上学「下一个词是什么」。烧钱的大头，产出语言能力和世界知识。你动不了，只能换模型。</dd></div>
       <div class="gt"><dt><span class="g-cn">监督学习</span><span class="g-en">Supervised Learning</span><span class="g-wk">W1</span></dt>
         <dd>拿「题目加标准答案」的配对训练模型。答案是有限类别叫分类，是连续数值叫回归。<b>这是一类方法，不是大模型专有的</b>，垃圾邮件识别、图片分类用的也是它。下面那条的监督微调，就是这个方法用在大模型上的一次具体使用。</dd></div>
-      <div class="gt"><dt><span class="g-cn">监督微调</span><span class="g-en">SFT</span><span class="g-wk">W1</span></dt>
+      <div class="gt"><dt><span class="g-cn">监督微调</span><span class="g-en">SFT · Supervised Fine-Tuning</span><span class="g-wk">W1</span></dt>
         <dd>预训练之后，用「指令加理想回答」的配对，教模型按人期望的方式说话办事。它用的方法就是上面那条的监督学习，多了三个限定：<b>必须在已经预训练好的模型上做、数据形状固定是指令配回答、目的是改行为而不是加知识。</b>「微」是指不从头训，只在现成模型上小幅拨。</dd></div>
-      <div class="gt"><dt><span class="g-cn">强化学习</span><span class="g-en">RL / RLHF</span><span class="g-wk">W1</span></dt>
+      <div class="gt"><dt><span class="g-cn">强化学习</span><span class="g-en">RLHF · Reinforcement Learning from Human Feedback</span><span class="g-wk">W1</span></dt>
         <dd>用人的偏好或可自动判定的对错，教模型什么答案更好。推理能力和拒答边界主要来自这一段。</dd></div>
+      <div class="gt"><dt><span class="g-cn">可验证奖励强化学习</span><span class="g-en">RLVR · Reinforcement Learning with Verifiable Rewards</span><span class="g-wk">W1</span></dt>
+        <dd>强化学习的一种，只用在答案能自动判对错的任务上，比如数学题能核对、代码能跑测试。因为对错客观、没法糊弄，这是推理模型这两年能力暴涨的主要原因。</dd></div>
       <div class="gt"><dt><span class="g-cn">后训练</span><span class="g-en">Post-training</span><span class="g-wk">W6</span></dt>
         <dd>监督微调加强化学习这两段的统称，跟预训练相对。第六周那个选看视频专门讲它。</dd></div>
       <div class="gt"><dt><span class="g-cn">微调</span><span class="g-en">Fine-tuning</span><span class="g-wk">W6</span></dt>
@@ -2050,7 +2056,7 @@
 
     <h3 class="block">五 · 给它接外部东西</h3>
     <dl class="gloss">
-      <div class="gt"><dt><span class="g-cn">检索增强</span><span class="g-en">RAG</span><span class="g-wk">W5</span></dt>
+      <div class="gt"><dt><span class="g-cn">检索增强</span><span class="g-en">RAG · Retrieval-Augmented Generation</span><span class="g-wk">W5</span></dt>
         <dd>回答前先去知识库捞相关资料，塞进上下文再让模型作答。知识缺口用它，不是用微调。</dd></div>
       <div class="gt"><dt><span class="g-cn">嵌入 / 向量</span><span class="g-en">Embedding</span><span class="g-wk">W5</span></dt>
         <dd>把文本转成一串数字，意思相近的距离也近，于是能按意思而不是关键词检索。</dd></div>
@@ -2060,7 +2066,7 @@
         <dd>该被捞上来的资料，实际捞上来几成。<b>检索要单独测这个，别和生成混在一起测。</b></dd></div>
       <div class="gt"><dt><span class="g-cn">工具调用</span><span class="g-en">Function Calling</span><span class="g-wk">W2</span></dt>
         <dd>模型不硬凭记忆答，而是去调 API、查数据库、跑代码，拿到真实结果再回答。</dd></div>
-      <div class="gt"><dt><span class="g-cn">模型上下文协议</span><span class="g-en">MCP</span><span class="g-wk">W7</span></dt>
+      <div class="gt"><dt><span class="g-cn">模型上下文协议</span><span class="g-en">MCP · Model Context Protocol</span><span class="g-wk">W7</span></dt>
         <dd>统一模型怎么连外部工具和数据源的开放协议，接一次多处复用。相当于 AI 应用的 USB-C。</dd></div>
     </dl>
 
@@ -2092,15 +2098,15 @@
         <dd>这个场景用户最多能等多久。先定预算再选模型，别反过来。</dd></div>
       <div class="gt"><dt><span class="g-cn">降级</span><span class="g-en">Fallback</span><span class="g-wk">W8</span></dt>
         <dd>模型超时、限流、涨价、下线时的应对。超时那条按占位内容而不是空态来做。</dd></div>
-      <div class="gt"><dt><span class="g-cn">混合专家</span><span class="g-en">MoE</span><span class="g-wk">选读</span></dt>
+      <div class="gt"><dt><span class="g-cn">混合专家</span><span class="g-en">MoE · Mixture of Experts</span><span class="g-wk">选读</span></dt>
         <dd>把模型拆成很多「专家」，每次只激活其中几个。总参数很大但实际计算量小。看到 30B-A3B 这种写法，前面是总参数，后面是每次真正用到的。</dd></div>
       <div class="gt"><dt><span class="g-cn">推理模型</span><span class="g-en">Reasoning Model</span><span class="g-wk">选读</span></dt>
         <dd>回答前先在内部想一长串再给结论。数学、代码、复杂规划明显更强，但更慢更贵。写文案、做分类用它是浪费钱。</dd></div>
-      <div class="gt"><dt><span class="g-cn">SOTA</span><span class="g-en">State of the Art</span><span class="g-wk">选读</span></dt>
+      <div class="gt"><dt><span class="g-cn">SOTA</span><span class="g-en">SOTA · State of the Art</span><span class="g-wk">选读</span></dt>
         <dd>当前最好水平。永远是「在哪个榜、哪个指标上」的，脱离任务说自己是 SOTA 基本等于没说。</dd></div>
       <div class="gt"><dt><span class="g-cn">规模法则</span><span class="g-en">Scaling Law</span><span class="g-wk">选读</span></dt>
         <dd>算力、数据、参数投入越多模型越强，而且关系可以提前预测。过去几年军备竞赛的理论依据。</dd></div>
-      <div class="gt"><dt><span class="g-cn">端侧模型</span><span class="g-en">On-device / SLM</span><span class="g-wk">选读</span></dt>
+      <div class="gt"><dt><span class="g-cn">端侧模型</span><span class="g-en">SLM · Small Language Model</span><span class="g-wk">选读</span></dt>
         <dd>能直接跑在手机或电脑本地的小模型。快、便宜、隐私好，但能力天花板明显更低。</dd></div>
     </dl>
   </section>
