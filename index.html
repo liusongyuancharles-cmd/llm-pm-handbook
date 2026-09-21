@@ -310,7 +310,7 @@
     <p class="standfirst">读得懂、画得清、能上手。讲义、图解、动手任务，全部挂在星镜这个真实项目上做，不额外开练手项目。</p>
     <div class="meta">
       <span>八周高密度 · 每周 15 到 20 小时</span>
-      <span>16 张图解 · 53 条术语</span>
+      <span>17 张图解 · 53 条术语</span>
       <span>视频全部选看</span>
     </div>
   </header>
@@ -401,6 +401,7 @@
       <a href="#w6">06 微调</a>
       <a href="#w7">07 智能体</a>
       <a href="#w8">08 成本</a>
+      <a href="#bench">模型强弱</a>
       <a href="#tools">工具差异</a>
       <a href="#done">结业</a>
       <a href="#terms">术语表</a>
@@ -1720,6 +1721,105 @@
     </ul>
     <div class="gate"><span class="gate-label">过关</span><span>答得出「用户量涨十倍，成本和毛利会变成什么样」，且手上有一份别人能直接用的 PRD 模板</span></div>
   </article>
+
+  <!-- ==================== 模型强弱 ==================== -->
+  <section class="tail" id="bench">
+    <div class="sec-head">
+      <h2>怎么判断哪个模型更强</h2>
+      <span class="sec-note">别人的榜单答不了你的问题</span>
+    </div>
+    <div class="lec">
+
+      <h4>先把「智商」这个提法放下</h4>
+      <p>没有一根轴能排出高下。<b>同一时刻，数学最强的、科学推理最强的、写代码最强的、最讨人喜欢的，往往是四个不同的模型。</b>你问「谁最聪明」，得到的答案取决于回答的人心里默认的是哪个榜。</p>
+
+      <h4>主流榜单各自在测什么</h4>
+      <div class="tbl-wrap">
+        <table>
+          <thead><tr><th>榜单</th><th>测的是</th><th>对产品的参考价值</th></tr></thead>
+          <tbody>
+            <tr><td>MMLU 系</td><td>通识选择题</td><td>低。早就饱和，几乎所有旗舰满分附近</td></tr>
+            <tr><td>GPQA</td><td>研究生级科学难题</td><td>中。考真推理不是背书，但离产品远</td></tr>
+            <tr><td>AIME</td><td>竞赛数学</td><td>低。信号最干净，但跟绝大多数产品工作无关</td></tr>
+            <tr><td>SWE-bench</td><td>在真实开源仓库里修 bug</td><td>高。跟产品工作最贴近的一个</td></tr>
+            <tr><td>智能体类</td><td>多步工具调用、在终端里干完一件事</td><td>高。越来越重要，也最难测准</td></tr>
+            <tr><td>竞技场 Elo</td><td>真人盲测两两投票</td><td>中。最接近「用着舒不舒服」，但偏爱讨喜的语气</td></tr>
+            <tr><td>长上下文类</td><td>在很长的材料里找出一句话</td><td>中。能找到不等于能用好，两回事</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h4>编程这块，现在的实际状况</h4>
+      <p>到 2026 年 9 月，最常被引用的那个编程榜已经<b>饱和</b>了：头部模型全挤在九十几分，彼此只差一两分，而且不同来源报的数还对不上。</p>
+      <p><b>一个所有人都考九十五分的考试，已经不能用来选人了。</b>所以业内正在往更难的版本迁移，过一两年那个也会饱和，再换。这是所有榜单的宿命。</p>
+
+      <div class="fig-wrap">
+        <figure>
+          <svg viewBox="0 0 700 240" role="img" aria-label="榜单饱和示意：榜单刚推出时各模型分数拉得很开，两年后全部挤在高分区，再也分不出差别">
+            <text x="175" y="28" text-anchor="middle" class="d-tb">榜单刚推出时</text>
+            <text x="535" y="28" text-anchor="middle" class="d-tw">两年后</text>
+
+            <line x1="40" y1="188" x2="310" y2="188" class="d-line"/>
+            <line x1="40" y1="44"  x2="40"  y2="188" class="d-line"/>
+            <text x="34" y="54"  text-anchor="end" class="d-tc">100</text>
+            <text x="34" y="190" text-anchor="end" class="d-tc">0</text>
+            <circle cx="70"  cy="152" r="5" class="d-barw"/>
+            <circle cx="110" cy="134" r="5" class="d-barw"/>
+            <circle cx="150" cy="125" r="5" class="d-barw"/>
+            <circle cx="190" cy="111" r="5" class="d-barw"/>
+            <circle cx="230" cy="102" r="5" class="d-barw"/>
+            <circle cx="270" cy="91"  r="5" class="d-barw"/>
+            <text x="175" y="214" text-anchor="middle" class="d-tm">分数拉得开，看得出高下</text>
+
+            <line x1="400" y1="188" x2="670" y2="188" class="d-line"/>
+            <line x1="400" y1="44"  x2="400" y2="188" class="d-line"/>
+            <text x="394" y="54" text-anchor="end" class="d-tc">100</text>
+            <line x1="400" y1="57" x2="670" y2="57" class="d-dash"/>
+            <circle cx="430" cy="59" r="5" fill="var(--signal)"/>
+            <circle cx="470" cy="58" r="5" fill="var(--signal)"/>
+            <circle cx="510" cy="57" r="5" fill="var(--signal)"/>
+            <circle cx="550" cy="56" r="5" fill="var(--signal)"/>
+            <circle cx="590" cy="55" r="5" fill="var(--signal)"/>
+            <circle cx="630" cy="55" r="5" fill="var(--signal)"/>
+            <text x="535" y="214" text-anchor="middle" class="d-tw">全挤在顶上，看不出差别</text>
+            <text x="30" y="236" class="d-tc">纵轴是分数。示意图，不是任何一个榜的真实数据</text>
+          </svg>
+          <figcaption>榜单出生时能分辨高下，两年后就被追平，然后被更难的榜取代。所以「谁在某个榜上第一」这个信息的保质期，比你想的短得多。</figcaption>
+        </figure>
+      </div>
+
+      <p>这带来两个对你直接有用的结论：</p>
+      <ol>
+        <li><b>旗舰之间的编程能力差距，已经小于你自己评测集能分辨的程度。</b>拿几个旗舰跑你的一百五十条，分差很可能落在噪声里。</li>
+        <li><b>选型的决定因素早就不是「谁更聪明」。</b>是价格、延迟、外壳顺不顺手、输出稳不稳定、以及会不会突然改版。</li>
+      </ol>
+
+      <h4>看榜单怎么不被骗，五条</h4>
+      <ol>
+        <li><b>脚手架混淆，这条最要命。</b>编程榜的分数是「模型加一整套外壳」一起跑出来的。两家都报 95 分，用的外壳可能天差地别。<b>你看到的常常是外壳的差距，不是模型的差距。</b>下一节专门讲这个。</li>
+        <li><b>数据污染。</b>题目本身混在训练数据里，模型其实背过答案。</li>
+        <li><b>Pass@k 的 k 是多少。</b>做一次就对，和做十次有一次对，完全两回事，后者在产品里用不上。</li>
+        <li><b>刷榜。</b>专门针对榜单题型优化，分数涨了但实际能力没涨。</li>
+        <li><b>这个榜跟你的活有多大关系。</b>编程榜测的是「在陌生仓库里修 bug」。这跟「帮我写个新功能」不一样，跟「帮我改一段文案」更是两回事。</li>
+      </ol>
+
+      <h4>别把排名写死，去看活的</h4>
+      <p>具体谁第一每个月都在变，写进任何文档里两周就过期，包括这份讲义。真要看就去实时榜单：<a href="https://lmarena.ai/leaderboard" target="_blank" rel="noopener">LMArena</a> 看人类偏好，<a href="https://www.swebench.com/" target="_blank" rel="noopener">SWE-bench 官方榜</a>看编程，<a href="https://artificialanalysis.ai/" target="_blank" rel="noopener">Artificial Analysis</a> 看综合加价格和速度。</p>
+      <p>要一句粗判断的话：<b>到 2026 年下半年，顶尖那几家在大多数任务上已经互有胜负，没有一家通吃。</b>谁在哪个榜上领先，两个月后可能就换人，别按这个做长期决定。</p>
+
+      <div class="key"><b>这一整节的结论是：别人的榜单回答不了你的问题。</b>你的问题从来不是「哪个模型最聪明」，而是「换成这个模型，我的产品会变好还是变坏」。能回答这个的只有你第四周建的那套评测集。跑一遍，十分钟出结果，比读十篇评测文章都准，而且只有它测的是你真正在乎的东西。</div>
+
+      <div class="fey">
+        <span class="fey-label">费曼检查点</span>
+        <p>录两分钟，讲这三条。</p>
+        <ul>
+          <li>为什么「哪个模型最聪明」这个问题问不出答案</li>
+          <li>什么叫榜单饱和，饱和之后那个榜还能用来干什么</li>
+          <li>两家都报 95 分，为什么你可能是在比外壳而不是比模型</li>
+        </ul>
+      </div>
+    </div>
+  </section>
 
   <!-- ==================== 工具差异 ==================== -->
   <section class="tail" id="tools">
