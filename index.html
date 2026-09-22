@@ -184,29 +184,6 @@
     border-left: 2px solid var(--line);
   }
 
-  /* ---------- term map ---------- */
-
-  .map { display: flex; flex-direction: column; }
-  .map-band { border: 1px solid var(--line); background: var(--surface); padding: 13px 15px; display: flex; flex-direction: column; gap: 10px; }
-  .map-band.locked { background: var(--surface-2); border-style: dashed; }
-  .map-band.yours { border: 1.6px solid var(--accent); background: var(--accent-soft); }
-  .map-head { display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap; }
-  .map-title { font-family: var(--display); font-variation-settings: "wdth" 116; font-weight: 700; font-size: 15px; color: var(--ink); }
-  .map-note { font-family: var(--mono); font-size: 10.5px; color: var(--muted); }
-  .map-band.yours .map-note { color: var(--accent); }
-  .map-cols { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 14px; }
-  .map-col { display: flex; flex-direction: column; gap: 7px; min-width: 0; }
-  .map-col h5 { margin: 0; font-size: 12.5px; font-weight: 600; color: var(--accent); font-family: var(--body); }
-  .map-chips { display: flex; flex-wrap: wrap; gap: 5px; }
-  .map-chips span {
-    font-size: 12px; padding: 2px 9px; border: 1px solid var(--line); border-radius: 999px;
-    color: var(--ink-2); background: var(--paper); white-space: nowrap;
-  }
-  .map-chips span.hot { border-color: var(--accent); color: var(--accent); font-weight: 600; background: var(--surface); }
-  .map-arrow { text-align: center; font-family: var(--mono); font-size: 10.5px; color: var(--muted); padding: 7px 0; }
-
-  @media (max-width: 620px) { .map-cols { grid-template-columns: 1fr; } }
-
   /* ---------- diagrams ---------- */
 
   .fig-wrap { overflow-x: auto; margin: 4px 0; }
@@ -333,7 +310,7 @@
     <p class="standfirst">读得懂、画得清、能上手。讲义、图解、动手任务，全部挂在星镜这个真实项目上做，不额外开练手项目。</p>
     <div class="meta">
       <span>八周高密度 · 每周 15 到 20 小时</span>
-      <span>18 张图解 · 54 条术语</span>
+      <span>17 张图解 · 54 条术语</span>
       <span>视频全部选看</span>
     </div>
   </header>
@@ -1996,52 +1973,6 @@
     </div>
     <p class="goal" style="margin-bottom:8px">教材里出现的名词全在这儿，按主题分七组。写法尽量是人话，不是教科书定义。</p>
     <p class="lede" style="margin-bottom:14px"><b>缩写都标了完整英文。</b>看不懂的缩写，先把英文全称拆开读一遍，很多词拆开就自明了。比如 SFT 是 Supervised Fine-Tuning，监督、微、调，三个词各对一个意思。</p>
-
-    <div class="fig-wrap">
-      <figure>
-        <div class="map">
-          <div class="map-band locked">
-            <div class="map-head"><span class="map-title">一、模型是怎么造出来的</span><span class="map-note">厂商做的，你基本动不了</span></div>
-            <div class="map-cols">
-              <div class="map-col"><h5>预训练</h5><div class="map-chips"><span>预训练</span><span>规模法则</span></div></div>
-              <div class="map-col"><h5>监督微调</h5><div class="map-chips"><span>监督学习</span><span>监督微调 SFT</span><span class="hot">微调</span></div></div>
-              <div class="map-col"><h5>强化学习</h5><div class="map-chips"><span>强化学习 RLHF</span><span>可验证奖励强化学习 RLVR</span><span>后训练</span></div></div>
-            </div>
-          </div>
-
-          <div class="map-arrow">出来的东西是</div>
-
-          <div class="map-band">
-            <div class="map-head"><span class="map-title">二、一个模型</span><span class="map-note">这些词描述模型本身，你只能选不能改</span></div>
-            <div class="map-chips">
-              <span>神经网络</span><span>参数 / 权重</span><span>Transformer</span><span>注意力</span><span>中间丢失</span><span>Token</span><span>上下文窗口</span><span>幻觉</span><span>推理模型</span><span>混合专家 MoE</span><span>蒸馏</span><span>量化</span><span>端侧模型</span><span>SOTA</span>
-            </div>
-          </div>
-
-          <div class="map-arrow">交到你手里，从这里开始全是你的活</div>
-
-          <div class="map-band yours">
-            <div class="map-head"><span class="map-title">三、你拿它做产品</span><span class="map-note">这一层才是你的战场</span></div>
-            <div class="map-cols">
-              <div class="map-col"><h5>喂什么进去</h5><div class="map-chips">
-                <span>提示词</span><span>系统提示词</span><span>温度</span><span>Top-p</span><span>上下文工程</span><span>结构化输出</span><span>提示词缓存</span><span>检索增强 RAG</span><span>嵌入 / 向量</span><span>切块</span><span>召回率</span></div></div>
-              <div class="map-col"><h5>让它自己干活</h5><div class="map-chips">
-                <span>工具调用</span><span>模型上下文协议 MCP</span><span>工作流</span><span>智能体</span><span class="hot">外壳</span><span>人在环路</span><span>目标漂移</span><span>多智能体</span><span>提示注入</span></div></div>
-              <div class="map-col"><h5>怎么知道好不好</h5><div class="map-chips">
-                <span class="hot">评测集</span><span>判定标准</span><span>基线</span><span>开放编码</span><span>裁判模型</span><span>一致率</span><span>抽检</span><span>回归</span></div></div>
-            </div>
-          </div>
-
-          <div class="map-arrow">上线之后</div>
-
-          <div class="map-band">
-            <div class="map-head"><span class="map-title">四、让它活得下去</span><span class="map-note">算账、提速、别翻车</span></div>
-            <div class="map-chips"><span>推理</span><span>模型分级</span><span>延迟预算</span><span>降级</span></div>
-          </div>
-        </div>
-        <figcaption>五十四个词按两条线摆开：<b>横着看是流程</b>，从模型被造出来一路走到上线之后；<b>竖着看是你能不能动它</b>。最上面那格是虚线，因为那是模型厂商的事，你只能挑不能改。第三格是蓝的，因为整份教材讲的都是那一格。蓝色圆点标出的三个词是全局的关节：<b>微调</b>是训练环节里你唯一能插手的，<b>外壳</b>决定同一个模型用起来是什么体验，<b>评测集</b>是所有判断的唯一依据。</figcaption>
-      </figure>
-    </div>
 
     <h3 class="block">一 · 模型本身是什么</h3>
     <dl class="gloss">
